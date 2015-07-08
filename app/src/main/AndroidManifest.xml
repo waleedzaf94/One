@@ -21,6 +21,10 @@
             android:name=".app.ListsActivity"
             android:label="@string/title_activity_lists" >
         </activity>
+        <activity
+            android:name=".app.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

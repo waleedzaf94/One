@@ -4,4 +4,17 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_lists">ListsActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="enter_keywords">Enter keywords to find influencers</string>
+    <string name="cancel_caps">CANCEL</string>
+    <string name="search_history">Search History</string>
+    <string name="clear_caps">CLEAR</string>
+    <string name="popular_categories">Popular Categories</string>
+    <string name="travel">Travel</string>
+    <string name="lifestyle">Lifestyle</string>
+    <string name="food">Food</string>
+    <string name="beauty">Beauty</string>
+    <string name="fashion">Fashion</string>
+    <string name="sports">Sports</string>
+    <string name="cars">Cars</string>
 </resources>
