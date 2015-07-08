@@ -1,6 +1,7 @@
 package com.clarity.one.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -96,6 +97,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 authenticate(v);
+                Intent i = new Intent(getBaseContext(), ListsActivity.class);
+                startActivity(i);
             }
         });
     }
