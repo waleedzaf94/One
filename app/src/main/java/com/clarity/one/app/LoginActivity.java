@@ -80,6 +80,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                Intent i = new Intent(v.getContext(), ListsActivity.class);
+                startActivity(i);
             }
         });
         loginBackground.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +99,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 authenticate(v);
-                Intent i = new Intent(getBaseContext(), ListsActivity.class);
+                Intent i = new Intent(v.getContext(), ListsActivity.class);
                 startActivity(i);
             }
         });
@@ -124,8 +126,7 @@ public class LoginActivity extends Activity {
         loginBackground.setLayoutParams(params);
     }
 
-    public class AuthWebViewClient extends WebViewClient
-    {
+    public class AuthWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url)
         {

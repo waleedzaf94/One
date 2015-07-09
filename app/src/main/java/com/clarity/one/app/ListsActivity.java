@@ -1,11 +1,13 @@
 package com.clarity.one.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,10 +42,21 @@ public class ListsActivity extends Activity {
         listsCreateListRL = (RelativeLayout) findViewById(R.id.listsCreateListRL);
 
         popList();
+        initStuff();
     }
 
     private void popList(){
 
+    }
+
+    private void initStuff(){
+        listsSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), SearchActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 }

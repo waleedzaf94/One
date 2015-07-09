@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LOG IN WITH"
+            android:text="@string/log_in_with_caps"
             android:id="@+id/loginTitle"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/loginInstagramLogo"
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="or"
+            android:text="@string/or"
             android:textSize="18sp"
             android:id="@+id/loginOrSeparator"
             android:layout_centerHorizontal="true"
@@ -55,7 +55,8 @@
             android:layout_below="@id/loginOrSeparator"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp"
-            android:hint="  Email"
+            android:paddingLeft="10dp"
+            android:hint="@string/email"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:background="#28000000"/>
@@ -69,14 +70,15 @@
             android:layout_below="@id/loginEmailAddress"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="9dp"
-            android:hint=" Password"
+            android:paddingLeft="10dp"
+            android:hint="@string/password"
             android:textColorHint="#ffffff"
             android:background="#28000000" />
 
         <Button
             android:layout_width="140dp"
             android:layout_height="35dp"
-            android:text="Sign In"
+            android:text="@string/sign_in"
             android:id="@+id/loginSignInButton"
             android:layout_below="@+id/loginPassword"
             android:layout_centerHorizontal="true"

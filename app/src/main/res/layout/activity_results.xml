@@ -1,0 +1,33 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.clarity.one.app.ResultsActivity"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="290dp"
+        android:layout_height="36dp"
+        android:id="@+id/resultsMoreFiltersBtn"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/more_filters"
+        android:textSize="16sp"
+        android:textColor="#1ab7ac"
+        android:background="@drawable/button_round_corners"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    </ListView>
+    
+    
+
+</LinearLayout>

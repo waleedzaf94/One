@@ -1,0 +1,17 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.clarity.one.app.ResultsActivity">
+
+    <item android:id="@+id/resultsSearchName"
+        android:title="@string/search_tags"
+        android:orderInCategory="1"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/resultsClose"
+        android:title="@string/close_caps"
+        android:orderInCategory="2"
+        app:showAsAction="always"/>
+
+</menu>

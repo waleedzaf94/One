@@ -17,4 +17,18 @@
     <string name="fashion">Fashion</string>
     <string name="sports">Sports</string>
     <string name="cars">Cars</string>
+    <string name="log_in_with_caps">LOG IN WITH</string>
+    <string name="or">or</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="username_no_caps">username</string>
+    <string name="create_new_influencer_list">Create New Influencer List</string>
+    <string name="search_button">Search Button</string>
+    <string name="title_activity_results">ResultsActivity</string>
+    <string name="back">Back</string>
+    <string name="search_tags">Search Tags</string>
+    <string name="close_caps">CLOSE</string>
+    <string name="search_results">Search Results</string>
+    <string name="more_filters">More Filters</string>
 </resources>
