@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="#fafafa">
+
+
+    <com.pkmmte.view.CircularImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#666666"
+        android:id="@+id/resultListPic"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:border="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListUsername"
+        android:text="@string/username_no_caps"
+        android:layout_toRightOf="@+id/resultListPic"
+        android:layout_toEndOf="@+id/resultListPic"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:textColor="#de000000"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListFollowersIcon"
+        android:background="@drawable/ci_followers"
+        android:layout_below="@+id/resultListUsername"
+        android:layout_alignLeft="@+id/resultListUsername"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListFollowers"
+        android:text="1.2m"
+        android:textSize="14sp"
+        android:textColor="#ab000000"
+        android:layout_toRightOf="@+id/resultListFollowersIcon"
+        android:layout_alignTop="@+id/resultListFollowersIcon"
+        android:layout_marginLeft="2dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListLikesIcon"
+        android:background="@drawable/ci_likes"
+        android:layout_toRightOf="@+id/resultListFollowers"
+        android:layout_alignTop="@+id/resultListFollowers"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListLikes"
+        android:text="22,933"
+        android:textSize="14sp"
+        android:textColor="#ab000000"
+        android:layout_toRightOf="@+id/resultListLikesIcon"
+        android:layout_alignTop="@+id/resultListLikesIcon"
+        android:layout_marginLeft="2dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListEngagementIcon"
+        android:background="@drawable/ci_engagement_rate"
+        android:layout_toRightOf="@+id/resultListLikes"
+        android:layout_alignTop="@+id/resultListLikes"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListEngagement"
+        android:text="2.7"
+        android:textSize="14sp"
+        android:textColor="#ab000000"
+        android:layout_toRightOf="@+id/resultListEngagementIcon"
+        android:layout_alignTop="@+id/resultListEngagementIcon"
+        android:layout_marginLeft="2dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultListTags"
+        android:text="#tags #tags #tags"
+        android:textSize="14sp"
+        android:textColor="#73000000"
+        android:layout_below="@+id/resultListFollowersIcon"
+        android:layout_alignLeft="@+id/resultListFollowersIcon"
+        android:layout_marginTop="4dp"/>
+
+
+
+</RelativeLayout>

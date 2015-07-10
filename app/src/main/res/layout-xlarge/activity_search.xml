@@ -1,0 +1,273 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.clarity.one.app.SearchActivity"
+    android:weightSum="20"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginTop="16dp"
+        android:background="#fafafa"
+        android:padding="16dp">
+
+
+
+        <EditText
+            android:layout_width="290dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_text_green_border"
+            android:id="@+id/searchKeywordsET"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:hint="@string/enter_keywords"
+            android:textSize="16sp"
+            android:textColorHint="#4a000000" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchSearchBtn"
+            android:layout_toLeftOf="@+id/searchCancelBtn"
+            android:layout_toStartOf="@+id/searchCancelBtn"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_find_g"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/cancel_caps"
+            android:textSize="14sp"
+            android:textColor="#8a000000"
+            android:id="@+id/searchCancelBtn"
+            android:background="#fafafa"
+            android:layout_gravity="end"
+            android:typeface="sans"
+            style="?android:attr/borderlessButtonStyle"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f4f4f4"
+        android:paddingTop="6dp"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/search_history"
+                android:textSize="16sp"
+                android:textColor="#8a000000"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:background="#f4f4f4"
+                android:text="@string/clear_caps"
+                android:textSize="14sp"
+                android:textColor="#8a000000"
+                style="?android:attr/borderlessButtonStyle"
+                android:id="@+id/searchClearHistoryBtn" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#fafafa">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchListView">
+
+
+        </ListView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f4f4f4"
+        android:paddingTop="6dp"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/popular_categories"
+            android:textSize="16sp"
+            android:textColor="#8a000000"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:background="#fafafa"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/travel"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:textColor="#8a000000"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:id="@+id/searchTravel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/lifestyle"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#8a000000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:textSize="16sp"
+                android:id="@+id/searchLifestyle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/food"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#8a000000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:textSize="16sp"
+                android:id="@+id/searchFood" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/beauty"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#8a000000"
+                android:textSize="16sp"
+                android:id="@+id/searchBeauty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/fashion"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#8a000000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:textSize="16sp"
+                android:id="@+id/searchFashion" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/sports"
+                android:textAllCaps="false"
+                android:textColor="#8a000000"
+                android:textSize="16sp"
+                android:id="@+id/searchSports" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_round_corners"
+                android:text="@string/cars"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#8a000000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:textSize="16sp"
+                android:id="@+id/searchCars" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -28,4 +28,5 @@ dependencies {
     compile 'com.amazonaws:aws-android-sdk-ddb:2.+'
     compile 'com.amazonaws:aws-android-sdk-ddb:2.+'
     compile 'com.amazonaws:aws-android-sdk-ddb-mapper:2.+'
+    compile 'com.pkmmte.view:circularimageview:1.1'
 }

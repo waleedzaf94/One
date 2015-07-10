@@ -3,6 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/fullbg.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/img_instagram.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ci_engagement_rate.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ci_followers.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ci_likes.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/fullbg.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/img_instagram.png" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
