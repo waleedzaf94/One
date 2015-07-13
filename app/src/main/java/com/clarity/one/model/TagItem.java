@@ -1,4 +1,4 @@
-package com.clarity.one.aws;
+package com.clarity.one.model;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexHashKey;
@@ -6,13 +6,13 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexRan
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBRangeKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 
-@DynamoDBTable(tableName="Tags")
-public class Tags {
+@DynamoDBTable(tableName="TagItem")
+public class TagItem {
 
     private String tag;
     private String userId;
 
-    @DynamoDBHashKey(attributeName = "Tags")
+    @DynamoDBHashKey(attributeName = "TagItem")
     public String getTag(){
         return tag;
     }

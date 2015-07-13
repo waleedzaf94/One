@@ -1,36 +1,35 @@
 package com.clarity.one.app;
 
 
+import com.clarity.one.adapters.resultsListAdapter;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.amazonaws.regions.Region;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.*;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.clarity.one.R;
-import com.clarity.one.aws.Tags;
+import com.clarity.one.aws.Influencer;
+import com.clarity.one.model.TagItem;
 
 import java.util.Iterator;
 
@@ -39,7 +38,9 @@ public class ResultsActivity extends ActionBarActivity {
     private String tagString;
     private String[] tags;
     private AmazonDynamoDBClient dynamoDBClient;
-    DynamoDBMapper mapper;
+    private DynamoDBMapper mapper;
+    private ListView resultListView;
+    private ListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class ResultsActivity extends ActionBarActivity {
         Intent i = getIntent();
         String message = i.getStringExtra(SearchActivity.ExtraMessage);
         this.tagString = message;
+        resultListView = (ListView) findViewById(R.id.resultList);
         parseTags();
         initDB();
 
@@ -76,37 +78,14 @@ public class ResultsActivity extends ActionBarActivity {
     private void getTags(){
         for (int i=0; i<tags.length; i++){
             try {
-                Tags tagResult = new Tags();
+                TagItem tagResult = new TagItem();
                 String qTag = tags[i];
                 Condition condition = new Condition()
                         .withComparisonOperator(ComparisonOperator.CONTAINS.toString())
                         .withAttributeValueList(new AttributeValue().withS(qTag.toString()));
 
-                new runQuery().execute(tags[i]);
+                new runTagsQuery().execute(tags[i]);
 
-                /*
-                DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
-                        .withRangeKeyCondition("Tags", condition)
-                        .withConsistentRead(false);
-
-                Tags hash = new Tags();
-                hash.setTag(qTag);
-
-                Object qd = new DynamoDBQueryExpression()
-                        .getHashKeyValues();
-
-                DynamoDBQueryExpression qe = new DynamoDBQueryExpression()
-                        .withHashKeyValues(hash);
-
-                qe.setHashKeyValues(hash);
-
-                DynamoDBQueryExpression qf = new DynamoDBQueryExpression()
-                        .withHashKeyValues(qTag);
-
-                //Tags sTag = mapper.load(Tags.class, qTag);
-
-                PaginatedQueryList<Tags> result = mapper.query(Tags.class, qe);
-                */
             } catch (Exception e){
                 String er = e.getMessage();
                 if (e != null)
@@ -116,28 +95,29 @@ public class ResultsActivity extends ActionBarActivity {
 
     }
 
-    private void displayResult(PaginatedQueryList<Tags> result){
+    private void displayResult(PaginatedQueryList<TagItem> result){
+        listAdapter = new resultsListAdapter(getApplicationContext(), result);
+        resultListView.setAdapter(listAdapter);
         Iterator k = result.iterator();
-        Tags item = null;
+        TagItem item = null;
         while (k.hasNext()){
-            item = (Tags) k.next();
+            item = (TagItem) k.next();
             Log.e("ITEM: ", item.getUserId());
         }
     }
 
-
-    class runQuery extends AsyncTask<String, Void, PaginatedQueryList<Tags>>{
+    class runTagsQuery extends AsyncTask<String, Void, PaginatedQueryList<TagItem>>{
 
         @Override
-        protected PaginatedQueryList<Tags> doInBackground(String... params){
+        protected PaginatedQueryList<TagItem> doInBackground(String... params){
                 try {
-                    Tags hashKey = new Tags();
+                    TagItem hashKey = new TagItem();
                     hashKey.setTag(params[0]);
 
                     DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
                             .withHashKeyValues(hashKey);
 
-                    PaginatedQueryList<Tags> result = mapper.query(Tags.class, queryExpression);
+                    PaginatedQueryList<TagItem> result = mapper.query(TagItem.class, queryExpression);
 
                     return result;
                 } catch (Exception e){
@@ -150,38 +130,40 @@ public class ResultsActivity extends ActionBarActivity {
             return null;
         }
 
-        protected void onPostExecute(PaginatedQueryList<Tags> result){
+        protected void onPostExecute(PaginatedQueryList<TagItem> result){
             displayResult(result);
         }
 
 
     }
 
-
-
-    class resultsListAdapter extends BaseAdapter{
+    class runInfluencerQuery extends AsyncTask<String, Void, PaginatedQueryList<Influencer> >{
 
         @Override
-        public int getCount(){
-            return 1;
-        }
+        protected PaginatedQueryList<Influencer> doInBackground(String... params){
+            try {
+                Influencer hashKey = new Influencer();
+                hashKey.setUserId(params[0]);
 
-        @Override
-        public String getItem(int position){
-            return "";
-        }
+                DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
+                        .withHashKeyValues(hashKey);
 
-        @Override
-        public long getItemId(int position){
-            return 0;
-        }
+                PaginatedQueryList<Influencer> result = mapper.query(Influencer.class, queryExpression);
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent){
+                return result;
+            } catch (Exception e){
+                String er = e.getMessage();
+                if (e != null)
+                    Log.e("Influencer AWS Error", er);
+                else
+                    Log.e("Influencer AWS Error", "No detailed message available");
+            }
             return null;
         }
 
+        protected void onPostExecute(PaginatedQueryList<Influencer> result){
 
+        }
 
     }
 
@@ -229,4 +211,5 @@ public class ResultsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
