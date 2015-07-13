@@ -31,4 +31,9 @@
     <string name="close_caps">CLOSE</string>
     <string name="search_results">Search Results</string>
     <string name="more_filters">More Filters</string>
+    <string name="title_activity_filter">FilterActivity</string>
+    <string name="location">Location</string>
+    <string name="followers">Followers</string>
+    <string name="engagement_rate">Engagement Rate</string>
+    <string name="confirm">Confirm</string>
 </resources>
