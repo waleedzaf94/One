@@ -14,6 +14,12 @@ public class ResultItem {
     private String engagement;
     private String [] tags;
     private String origTag;
+    private String userId;
+
+    public ResultItem(String oTag, String user){
+        this.origTag = oTag;
+        this.userId = user;
+    }
 
     public CircularImageView getProfilePic(){
         return profilePic;
@@ -69,6 +75,14 @@ public class ResultItem {
 
     public void setOrigTag(String t){
         this.origTag = t;
+    }
+
+    public String getUserId(){
+        return userId;
+    }
+
+    public void setUserId(String u){
+        this.userId = u;
     }
 
 }

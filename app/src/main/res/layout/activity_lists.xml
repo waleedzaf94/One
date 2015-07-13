@@ -22,20 +22,20 @@
             android:layout_height="match_parent">
 
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/listsSettings"
-                    android:background="@drawable/ic_setting" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listsSettings"
+                android:background="@drawable/ic_setting" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/username_no_caps"
-                    android:id="@+id/listsUsername"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username_no_caps"
+                android:id="@+id/listsUsername"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:textSize="24sp"/>
 
             <ImageView
                 android:layout_width="60dp"

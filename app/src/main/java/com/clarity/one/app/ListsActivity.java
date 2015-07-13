@@ -1,10 +1,11 @@
 package com.clarity.one.app;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 import com.clarity.one.R;
 
 
-public class ListsActivity extends Activity {
+public class ListsActivity extends ActionBarActivity {
 
     private ImageButton listsSettings, listsSearch;
     private TextView listsUsername, listsCreateListTV;
@@ -58,5 +59,39 @@ public class ListsActivity extends Activity {
             }
         });
     }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        ActionBar mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowHomeEnabled(false);
+        mActionBar.setDisplayShowTitleEnabled(false);
+        mActionBar.setDisplayHomeAsUpEnabled(false);
+        LayoutInflater mInflater = LayoutInflater.from(this);
+
+        View mCustomView = mInflater.inflate(R.layout.actionbar_lists, null);
+
+        mActionBar.setCustomView(mCustomView);
+        mActionBar.setDisplayShowCustomEnabled(true);
+
+        Toolbar parent = (Toolbar) mCustomView.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.listsSettings:{
+                //Do Something
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    */
 
 }

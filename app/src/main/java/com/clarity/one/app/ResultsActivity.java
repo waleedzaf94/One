@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
@@ -24,15 +23,13 @@ import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
-import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.clarity.one.R;
 import com.clarity.one.model.Influencer;
+import com.clarity.one.model.ResultItem;
 import com.clarity.one.model.TagItem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 public class ResultsActivity extends ActionBarActivity {
 
@@ -42,6 +39,7 @@ public class ResultsActivity extends ActionBarActivity {
     private DynamoDBMapper mapper;
     private ListView resultListView;
     private ListAdapter listAdapter;
+    protected List<ResultItem> searchResults = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +95,14 @@ public class ResultsActivity extends ActionBarActivity {
     private void displayResult(PaginatedQueryList<TagItem> result){
         listAdapter = new resultsListAdapter(getApplicationContext(), result);
         resultListView.setAdapter(listAdapter);
-        Iterator k = result.iterator();
+        /*Iterator k = result.iterator();
         TagItem item = null;
         while (k.hasNext()){
             item = (TagItem) k.next();
+            ResultItem resultItem = new ResultItem(item.getTag(), item.getUserId());
+            searchResults.add(resultItem);
             Log.e("ITEM: ", item.getUserId());
-        }
+        }*/
     }
 
     class runTagsQuery extends AsyncTask<String, Void, PaginatedQueryList<TagItem>>{
@@ -136,13 +136,19 @@ public class ResultsActivity extends ActionBarActivity {
 
     }
 
-    class runInfluencerQuery extends AsyncTask<String, Void, PaginatedQueryList<Influencer> >{
+    class runInfluencerQuery extends AsyncTask<Void, Void, PaginatedQueryList<Influencer> >{
+
+        ResultItem resultItem;
+
+        public runInfluencerQuery(ResultItem r){
+            this.resultItem = r;
+        }
 
         @Override
-        protected PaginatedQueryList<Influencer> doInBackground(String... params){
+        protected PaginatedQueryList<Influencer> doInBackground(Void... params){
             try {
                 Influencer hashKey = new Influencer();
-                hashKey.setUserId(params[0]);
+                hashKey.setUserId(resultItem.getUserId());
 
                 DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
                         .withHashKeyValues(hashKey);
@@ -175,16 +181,7 @@ public class ResultsActivity extends ActionBarActivity {
         mActionBar.setDisplayHomeAsUpEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
 
-        View mCustomView = mInflater.inflate(R.layout.results_actionbar, null);
-        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.resultsSearchNameL);
-        TextView mCloseView = (TextView) mCustomView.findViewById(R.id.resultsCloseL);
-
-        mCloseView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        View mCustomView = mInflater.inflate(R.layout.actionbar_results, null);
 
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
