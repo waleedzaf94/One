@@ -28,9 +28,10 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.clarity.one.R;
-import com.clarity.one.aws.Influencer;
+import com.clarity.one.model.Influencer;
 import com.clarity.one.model.TagItem;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ResultsActivity extends ActionBarActivity {
@@ -46,6 +47,8 @@ public class ResultsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        
 
         Intent i = getIntent();
         String message = i.getStringExtra(SearchActivity.ExtraMessage);
@@ -78,11 +81,7 @@ public class ResultsActivity extends ActionBarActivity {
     private void getTags(){
         for (int i=0; i<tags.length; i++){
             try {
-                TagItem tagResult = new TagItem();
                 String qTag = tags[i];
-                Condition condition = new Condition()
-                        .withComparisonOperator(ComparisonOperator.CONTAINS.toString())
-                        .withAttributeValueList(new AttributeValue().withS(qTag.toString()));
 
                 new runTagsQuery().execute(tags[i]);
 

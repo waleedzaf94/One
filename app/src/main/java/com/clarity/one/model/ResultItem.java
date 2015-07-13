@@ -12,6 +12,8 @@ public class ResultItem {
     private String followersCount;
     private String averageLikes;
     private String engagement;
+    private String [] tags;
+    private String origTag;
 
     public CircularImageView getProfilePic(){
         return profilePic;
@@ -51,6 +53,22 @@ public class ResultItem {
 
     public void setEngagement(String e){
         this.engagement = e;
+    }
+
+    public String [] getTags(){
+        return tags;
+    }
+
+    public void setTags(String [] t){
+        this.tags = t;
+    }
+
+    public String getOrigTag(){
+        return origTag;
+    }
+
+    public void setOrigTag(String t){
+        this.origTag = t;
     }
 
 }
