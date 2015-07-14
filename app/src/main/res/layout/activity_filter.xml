@@ -86,23 +86,13 @@
         android:paddingRight="45dp"
         android:orientation="vertical">
 
-        <SeekBar
-            android:layout_width="match_parent"
+        <Spinner
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="30dp"
-            android:id="@+id/filterFollowersSeek"
-            android:max="700"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:textSize="12sp"
-            android:textColor="#000000"
-            android:id="@+id/filterFollowersNum"
-            android:paddingLeft="15dp"
-            android:text="0"/>
+            android:id="@+id/filterFollowersSpinner"
+            android:layout_marginTop="15dp"
+            android:entries="@array/follower_thresholds"
+            android:prompt="@string/set_threshold"/>
 
         
 
@@ -140,23 +130,15 @@
         android:paddingRight="45dp"
         android:orientation="vertical">
 
-        <SeekBar
-            android:layout_width="match_parent"
+        <Spinner
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="30dp"
-            android:id="@+id/filterEngagementSeek"
-            android:max="10"/>
+            android:id="@+id/filterEngagementSpinner"
+            android:background="@android:color/transparent"
+            android:entries="@array/engagement_thresholds"
+            android:layout_marginTop="15dp"
+            android:prompt="@string/set_threshold"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:textSize="12sp"
-            android:id="@+id/filterEngagementNum"
-            android:textColor="#000000"
-            android:paddingLeft="15dp"
-            android:text="0"/>
 
     </LinearLayout>
 

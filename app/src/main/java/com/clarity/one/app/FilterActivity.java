@@ -18,8 +18,6 @@ import com.clarity.one.R;
 public class FilterActivity extends ActionBarActivity {
 
     private EditText filterLocation;
-    private SeekBar filterFollowersSeek, filterEngagementSeek;
-    private TextView filterFollowersNum, filterEngagementNum;
     private Button filterConfirm;
 
     private static String fLocation;
@@ -32,10 +30,6 @@ public class FilterActivity extends ActionBarActivity {
         setContentView(R.layout.activity_filter);
 
         filterLocation = (EditText) findViewById(R.id.filterLocation);
-        filterFollowersSeek = (SeekBar) findViewById(R.id.filterFollowersSeek);
-        filterEngagementSeek = (SeekBar) findViewById(R.id.filterEngagementSeek);
-        filterFollowersNum = (TextView) findViewById(R.id.filterFollowersNum);
-        filterEngagementNum = (TextView) findViewById(R.id.filterEngagementNum);
         filterConfirm = (Button) findViewById(R.id.filterConfirm);
 
         initStuff();
@@ -43,44 +37,7 @@ public class FilterActivity extends ActionBarActivity {
     }
 
     private void initStuff(){
-        filterFollowersSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int val=0;
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int power = progress%100;
-                val = progress;
-                filterFollowersNum.setText(Integer.toString(val));
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        filterEngagementSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int val=0;
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                val = progress;
-                filterEngagementNum.setText(Integer.toString(val));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
     }
 
     @Override
@@ -88,7 +45,7 @@ public class FilterActivity extends ActionBarActivity {
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
-        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setDisplayHomeAsUpEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
 
         View mCustomView = mInflater.inflate(R.layout.actionbar_filter, null);

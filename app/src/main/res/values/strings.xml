@@ -38,4 +38,28 @@
     <string name="confirm">Confirm</string>
     <string name="city_or_country">City or Country</string>
     <string name="filters">Filters</string>
+    <string name="set_threshold">Set Threshold</string>
+    <string-array name="follower_thresholds">
+        <item>1k</item>
+        <item>2k</item>
+        <item>5k</item>
+        <item>10k</item>
+        <item>20k</item>
+        <item>50k</item>
+        <item>100k</item>
+        <item>200k</item>
+        <item>500k</item>
+        <item>1m</item>
+        <item>2m</item>
+        <item>5m</item>
+    </string-array>
+    <string-array name="engagement_thresholds">
+        <item>0.5 %</item>
+        <item>1 %</item>
+        <item>2 %</item>
+        <item>3 %</item>
+        <item>4 %</item>
+        <item>5 %</item>
+        <item>10 %</item>
+    </string-array>
 </resources>
