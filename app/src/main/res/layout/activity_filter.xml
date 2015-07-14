@@ -14,7 +14,8 @@
         android:layout_height="32dp"
         android:background="#f4f4f4"
         android:orientation="horizontal"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingStart="24dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -35,8 +36,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="88dp">
+        android:layout_height="88dp"
+        android:paddingLeft="45dp"
+        android:paddingStart="45dp"
+        android:paddingRight="45dp"
+        android:paddingEnd="45dp">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/city_or_country"
+            android:textColorHint="#4a000000"
+            android:textSize="18sp"
+            android:id="@+id/filterLocation"
+            android:background="@null"
+            android:layout_gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -45,12 +59,13 @@
         android:layout_height="32dp"
         android:background="#f4f4f4"
         android:orientation="horizontal"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingStart="24dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_location"/>
+            android:background="@drawable/ic_followers_grey"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,8 +81,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="88dp">
+        android:layout_height="88dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:orientation="vertical">
 
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:id="@+id/filterFollowersSeek"
+            android:max="700"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:id="@+id/filterFollowersNum"
+            android:paddingLeft="15dp"
+            android:text="0"/>
+
+        
 
     </LinearLayout>
 
@@ -76,12 +113,13 @@
         android:layout_height="32dp"
         android:background="#f4f4f4"
         android:orientation="horizontal"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingStart="24dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_location"/>
+            android:background="@drawable/ic_engagement_rate"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,5 +132,43 @@
             android:layout_gravity="center_vertical"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:id="@+id/filterEngagementSeek"
+            android:max="10"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textSize="12sp"
+            android:id="@+id/filterEngagementNum"
+            android:textColor="#000000"
+            android:paddingLeft="15dp"
+            android:text="0"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="50dp"
+        android:id="@+id/filterConfirm"
+        android:background="#AA3DA69E"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:text="@string/confirm"/>
 
 </LinearLayout>

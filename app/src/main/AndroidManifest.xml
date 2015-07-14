@@ -51,7 +51,11 @@
         </activity>
         <activity
             android:name=".app.FilterActivity"
-            android:label="@string/title_activity_filter" >
+            android:label="@string/title_activity_filter"
+            android:parentActivityName=".app.ResultsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".app.ResultsActivity"/>
         </activity>
     </application>
 

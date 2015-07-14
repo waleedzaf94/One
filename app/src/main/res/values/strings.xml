@@ -36,4 +36,6 @@
     <string name="followers">Followers</string>
     <string name="engagement_rate">Engagement Rate</string>
     <string name="confirm">Confirm</string>
+    <string name="city_or_country">City or Country</string>
+    <string name="filters">Filters</string>
 </resources>

@@ -3,6 +3,7 @@ package com.clarity.one.app;
 
 import com.clarity.one.adapters.resultsListAdapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -14,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
@@ -40,21 +43,35 @@ public class ResultsActivity extends ActionBarActivity {
     private ListView resultListView;
     private ListAdapter listAdapter;
     protected List<ResultItem> searchResults = new ArrayList<>();
+    private Button resultsMoreFiltersBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        
-
         Intent i = getIntent();
         String message = i.getStringExtra(SearchActivity.ExtraMessage);
         this.tagString = message;
         resultListView = (ListView) findViewById(R.id.resultList);
+
+        resultsMoreFiltersBtn = (Button) findViewById(R.id.resultsMoreFiltersBtn);
+
         parseTags();
+        initStuff();
         initDB();
 
+    }
+
+    private void initStuff(){
+        resultsMoreFiltersBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(getApplicationContext(), FilterActivity.class);
+                startActivity(i);
+
+            }
+        });
     }
 
     private void parseTags(){
@@ -182,6 +199,17 @@ public class ResultsActivity extends ActionBarActivity {
         LayoutInflater mInflater = LayoutInflater.from(this);
 
         View mCustomView = mInflater.inflate(R.layout.actionbar_results, null);
+        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.resultsSearchNameL);
+        TextView mCloseView = (TextView) mCustomView.findViewById(R.id.resultsCloseL);
+
+        mTitleTextView.setText(tagString);
+
+        mCloseView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
