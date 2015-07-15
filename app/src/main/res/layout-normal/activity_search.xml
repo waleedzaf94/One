@@ -34,7 +34,7 @@
             android:paddingRight="10dp"
             android:paddingEnd="10dp"
             android:hint="@string/enter_keywords"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textColorHint="#4a000000" />
 
         <ImageButton
@@ -53,7 +53,7 @@
             android:layout_alignParentRight="true"
             android:text="@string/cancel_caps"
             android:layout_centerVertical="true"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textColor="#8a000000"
             android:id="@+id/searchCancelBtn"
             android:background="#fafafa"

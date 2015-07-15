@@ -52,10 +52,18 @@
         <activity
             android:name=".app.FilterActivity"
             android:label="@string/title_activity_filter"
-            android:parentActivityName=".app.ResultsActivity">
+            android:parentActivityName=".app.ResultsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".app.ResultsActivity"/>
+                android:value=".app.ResultsActivity" />
+        </activity>
+        <activity
+            android:name=".app.InfluencerActivity"
+            android:label="@string/title_activity_influencer"
+            android:parentActivityName=".app.ResultsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.clarity.one.app.ResultsActivity" />
         </activity>
     </application>
 

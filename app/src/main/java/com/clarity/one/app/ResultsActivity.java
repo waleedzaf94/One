@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -44,6 +45,7 @@ public class ResultsActivity extends ActionBarActivity {
     private ListAdapter listAdapter;
     protected List<ResultItem> searchResults = new ArrayList<>();
     private Button resultsMoreFiltersBtn;
+    public static final String influencerId = "com.clarity.one.app.influencerId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +69,20 @@ public class ResultsActivity extends ActionBarActivity {
         resultsMoreFiltersBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = new Intent(getApplicationContext(), FilterActivity.class);
+                Intent i = new Intent(v.getContext(), FilterActivity.class);
                 startActivity(i);
 
+            }
+        });
+
+        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TagItem item = (TagItem) resultListView.getItemAtPosition(position);
+                String uid = item.getUserId();
+                Intent i = new Intent(getApplicationContext(), InfluencerActivity.class);
+                i.putExtra(influencerId, uid);
+                startActivity(i);
             }
         });
     }
