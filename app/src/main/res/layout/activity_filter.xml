@@ -1,12 +1,11 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="24dp"
     android:background="#fafafa"
     android:orientation="vertical"
+    android:paddingBottom="24dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.clarity.one.app.FilterActivity">
 
     <LinearLayout
@@ -20,37 +19,37 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_location"/>
+            android:background="@drawable/ic_location" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
-            android:textSize="16sp"
-            android:textColor="#de000000"
             android:text="@string/location"
-            android:layout_gravity="center_vertical"/>
+            android:textColor="#de000000"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="88dp"
+        android:paddingEnd="45dp"
         android:paddingLeft="45dp"
-        android:paddingStart="45dp"
         android:paddingRight="45dp"
-        android:paddingEnd="45dp">
+        android:paddingStart="45dp">
 
         <EditText
+            android:id="@+id/filterLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
             android:hint="@string/city_or_country"
             android:textColorHint="#4a000000"
-            android:textSize="18sp"
-            android:id="@+id/filterLocation"
-            android:background="@null"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -65,36 +64,35 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_followers_grey"/>
+            android:background="@drawable/ic_followers_grey" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
-            android:textSize="16sp"
-            android:textColor="#de000000"
             android:text="@string/followers"
-            android:layout_gravity="center_vertical"/>
+            android:textColor="#de000000"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="88dp"
+        android:orientation="vertical"
         android:paddingLeft="45dp"
-        android:paddingRight="45dp"
-        android:orientation="vertical">
+        android:paddingRight="45dp">
 
         <Spinner
+            android:id="@+id/filterFollowersSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/filterFollowersSpinner"
             android:layout_marginTop="15dp"
             android:entries="@array/follower_thresholds"
-            android:prompt="@string/set_threshold"/>
+            android:prompt="@string/set_threshold" />
 
-        
 
     </LinearLayout>
 
@@ -109,47 +107,47 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_engagement_rate"/>
+            android:background="@drawable/ic_engagement_rate" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
-            android:textSize="16sp"
-            android:textColor="#de000000"
             android:text="@string/engagement_rate"
-            android:layout_gravity="center_vertical"/>
+            android:textColor="#de000000"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="88dp"
+        android:orientation="vertical"
         android:paddingLeft="45dp"
-        android:paddingRight="45dp"
-        android:orientation="vertical">
+        android:paddingRight="45dp">
 
         <Spinner
+            android:id="@+id/filterEngagementSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/filterEngagementSpinner"
-            android:entries="@array/engagement_thresholds"
             android:layout_marginTop="15dp"
-            android:prompt="@string/set_threshold"/>
+            android:entries="@array/engagement_thresholds"
+            android:prompt="@string/set_threshold" />
 
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/filterConfirm"
         android:layout_width="200dp"
         android:layout_height="36dp"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginTop="50dp"
-        android:id="@+id/filterConfirm"
         android:background="#AA3DA69E"
+        android:text="@string/confirm"
         android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:text="@string/confirm"/>
+        android:textSize="18sp" />
 
 </LinearLayout>

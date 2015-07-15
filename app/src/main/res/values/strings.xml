@@ -64,7 +64,12 @@
     </string-array>
     <string name="title_activity_influencer">InfluencerActivity</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Profile</string>
+    <string name="title_section2">Popular</string>
+    <string name="title_section3">Recent</string>
+    <string name="posts">Posts</string>
+    <string name="top_tags">Top Tags</string>
+    <string name="top_locations">Top Locations</string>
+    <string name="top_20_following_caps">TOP 20 FOLLOWING</string>
+
 </resources>
