@@ -71,5 +71,8 @@
     <string name="top_tags">Top Tags</string>
     <string name="top_locations">Top Locations</string>
     <string name="top_20_following_caps">TOP 20 FOLLOWING</string>
+    <string name="avg_likes">Avg. Likes</string>
+    <string name="engagement">Engagement</string>
+    <string name="profile_settings">Settings</string>
 
 </resources>

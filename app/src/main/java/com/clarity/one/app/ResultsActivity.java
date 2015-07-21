@@ -1,14 +1,13 @@
 package com.clarity.one.app;
 
 
-import com.clarity.one.adapters.resultsListAdapter;
+import com.clarity.one.adapters.ResultsListAdapter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,14 +27,14 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 
 import com.clarity.one.R;
-import com.clarity.one.model.Influencer;
+import com.clarity.one.model.InfluencerOne;
 import com.clarity.one.model.ResultItem;
 import com.clarity.one.model.TagItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultsActivity extends ActionBarActivity {
+public class ResultsActivity extends AppCompatActivity {
 
     private String tagString;
     private String[] tags;
@@ -43,6 +42,7 @@ public class ResultsActivity extends ActionBarActivity {
     private DynamoDBMapper mapper;
     private ListView resultListView;
     private ListAdapter listAdapter;
+    private List<TagItem> results;
     protected List<ResultItem> searchResults = new ArrayList<>();
     private Button resultsMoreFiltersBtn;
     public static final String influencerId = "com.clarity.one.app.influencerId";
@@ -123,7 +123,7 @@ public class ResultsActivity extends ActionBarActivity {
     }
 
     private void displayResult(PaginatedQueryList<TagItem> result){
-        listAdapter = new resultsListAdapter(getApplicationContext(), result);
+        listAdapter = new ResultsListAdapter(getApplicationContext(), result);
         resultListView.setAdapter(listAdapter);
         /*Iterator k = result.iterator();
         TagItem item = null;
@@ -166,7 +166,7 @@ public class ResultsActivity extends ActionBarActivity {
 
     }
 
-    class runInfluencerQuery extends AsyncTask<Void, Void, PaginatedQueryList<Influencer> >{
+    class runInfluencerQuery extends AsyncTask<Void, Void, PaginatedQueryList<InfluencerOne> >{
 
         ResultItem resultItem;
 
@@ -175,28 +175,28 @@ public class ResultsActivity extends ActionBarActivity {
         }
 
         @Override
-        protected PaginatedQueryList<Influencer> doInBackground(Void... params){
+        protected PaginatedQueryList<InfluencerOne> doInBackground(Void... params){
             try {
-                Influencer hashKey = new Influencer();
+                InfluencerOne hashKey = new InfluencerOne();
                 hashKey.setUserId(resultItem.getUserId());
 
                 DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
                         .withHashKeyValues(hashKey);
 
-                PaginatedQueryList<Influencer> result = mapper.query(Influencer.class, queryExpression);
+                PaginatedQueryList<InfluencerOne> result = mapper.query(InfluencerOne.class, queryExpression);
 
                 return result;
             } catch (Exception e){
                 String er = e.getMessage();
                 if (e != null)
-                    Log.e("Influencer AWS Error", er);
+                    Log.e("InfluencerOne AWS Error", er);
                 else
-                    Log.e("Influencer AWS Error", "No detailed message available");
+                    Log.e("InfluencerOne AWS Error", "No detailed message available");
             }
             return null;
         }
 
-        protected void onPostExecute(PaginatedQueryList<Influencer> result){
+        protected void onPostExecute(PaginatedQueryList<InfluencerOne> result){
 
         }
 

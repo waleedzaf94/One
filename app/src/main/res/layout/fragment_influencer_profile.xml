@@ -2,13 +2,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#fafafa"
+    android:orientation="vertical"
     tools:context="com.clarity.one.app.InfluencerActivity$PlaceholderFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/halfbg"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/influencerProfilePic"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ic_influencer_dummy" />
+
+        <TextView
+            android:id="@+id/influencerAvgLikes"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/influencerProfilePic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:text="22k"
+            android:textColor="#b2ffffff"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/influencerFollowersCount"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/influencerAvgLikes"
+            android:layout_toLeftOf="@+id/influencerAvgLikes"
+            android:layout_toStartOf="@+id/influencerAvgLikes"
+            android:gravity="center"
+            android:text="1.4m"
+            android:textColor="#b2ffffff"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/influencerEngagement"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/influencerAvgLikes"
+            android:layout_toEndOf="@+id/influencerAvgLikes"
+            android:layout_toRightOf="@+id/influencerAvgLikes"
+            android:gravity="center"
+            android:text="2.7"
+            android:textColor="#b2ffffff"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/influencerAvgLikesIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/influencerAvgLikes"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ic_likes_white" />
+
+        <ImageView
+            android:id="@+id/influencerFollowersCountIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/influencerFollowersCount"
+            android:layout_alignStart="@+id/influencerFollowersCount"
+            android:layout_below="@+id/influencerFollowersCount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ic_followers_white" />
+
+        <ImageView
+            android:id="@+id/influencerEngagementIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/influencerEngagement"
+            android:layout_alignStart="@+id/influencerEngagement"
+            android:layout_below="@+id/influencerEngagement"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ic_engagement_rate_white" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/influencerFollowersCount"
+            android:layout_alignStart="@+id/influencerFollowersCount"
+            android:layout_below="@+id/influencerFollowersCountIcon"
+            android:gravity="center"
+            android:text="@string/followers"
+            android:textColor="#b2ffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/influencerAvgLikes"
+            android:layout_alignStart="@+id/influencerAvgLikes"
+            android:layout_below="@+id/influencerAvgLikesIcon"
+            android:gravity="center"
+            android:text="@string/avg_likes"
+            android:textColor="#b2ffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/influencerEngagement"
+            android:layout_alignStart="@+id/influencerEngagement"
+            android:layout_below="@+id/influencerEngagementIcon"
+            android:gravity="center"
+            android:text="@string/engagement"
+            android:textColor="#b2ffffff"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -16,70 +136,72 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/profileBio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/profileBio"
-                android:textSize="14sp"
-                android:textColor="#8a000000"
-                android:text="Nicole Warne, Bio and All"
+                android:layout_marginEnd="48dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginRight="48dp"
-                android:layout_marginEnd="48dp"/>
+                android:layout_marginStart="16dp"
+                android:text="Nicole Warne, Bio and All"
+                android:textColor="#8a000000"
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/profilePosts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#8a000000"
-                android:textSize="16sp"
-                android:layout_below="@+id/profileBio"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
+                android:layout_below="@+id/profileBio"
                 android:layout_marginTop="20dp"
                 android:text="@string/posts"
-                android:id="@+id/profilePosts"/>
+                android:textColor="#8a000000"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/profileTopTags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#8a000000"
-                android:textSize="16sp"
-                android:layout_below="@+id/profilePosts"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
+                android:layout_below="@+id/profilePosts"
                 android:layout_marginTop="5dp"
                 android:text="@string/top_tags"
-                android:id="@+id/profileTopTags"/>
+                android:textColor="#8a000000"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/profileTopLocations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#8a000000"
-                android:textSize="16sp"
-                android:layout_below="@+id/profileTopTags"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
+                android:layout_below="@+id/profileTopTags"
                 android:layout_marginTop="5dp"
                 android:text="@string/top_locations"
-                android:id="@+id/profileTopLocations"/>
+                android:textColor="#8a000000"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/profileTopFollowing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#8a000000"
-                android:textSize="16sp"
-                android:layout_below="@+id/profileTopLocations"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
+                android:layout_below="@+id/profileTopLocations"
                 android:layout_marginTop="50dp"
                 android:text="@string/top_20_following_caps"
-                android:id="@+id/profileTopFollowing"/>
+                android:textColor="#8a000000"
+                android:textSize="16sp" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/profileRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="75dp"
                 android:layout_below="@+id/profileTopFollowing"
-                android:background="#80000000"/>
+                android:layout_marginTop="3dp"
+                android:background="#80000000" />
 
         </RelativeLayout>
 

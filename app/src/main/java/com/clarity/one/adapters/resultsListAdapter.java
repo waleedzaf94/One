@@ -25,9 +25,9 @@ import java.net.URL;
 /**
  * Created by Waleed on 7/12/2015.
  */
-public class resultsListAdapter extends ArrayAdapter<TagItem> {
+public class ResultsListAdapter extends ArrayAdapter<TagItem> {
 
-    public resultsListAdapter(Context context, PaginatedQueryList<TagItem> queryList){
+    public ResultsListAdapter(Context context, PaginatedQueryList<TagItem> queryList){
         super(context, R.layout.list_item_results, queryList);
     }
 
