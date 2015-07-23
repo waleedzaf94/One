@@ -19,6 +19,7 @@ import com.clarity.one.model.Influencer;
 public class ProfileFragment extends Fragment {
 
     private String userId;
+    private Influencer influencer;
     private ImageView influencerProfilePic;
     private TextView influencerAvgLikes, influencerFollowersCount, influencerEngagement;
 
@@ -32,7 +33,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        userId = getArguments().getString("ActivityUserId");
 
     }
 
@@ -52,12 +52,18 @@ public class ProfileFragment extends Fragment {
         influencerAvgLikes = (TextView) rootView.findViewById(R.id.influencerAvgLikes);
         influencerFollowersCount = (TextView) rootView.findViewById(R.id.influencerFollowersCount);
         influencerEngagement = (TextView) rootView.findViewById(R.id.influencerEngagement);
-        downloadStuff();
         return rootView;
     }
 
-    private void downloadStuff(){
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        userId = getArguments().getString("ActivityUserId");
+        influencer = (Influencer) getArguments().getSerializable("InfluencerObject");
+        influencerProfilePic.setImageDrawable(influencer.getProfilePicture());
+        influencerAvgLikes.setText(Double.toString(influencer.getAverageLikes()));
+        influencerFollowersCount.setText(Integer.toString(influencer.getFollowersCount()));
+        influencerEngagement.setText(Double.toString(influencer.getEngagementRate()));
     }
+
 
 }

@@ -32,6 +32,7 @@ import com.clarity.one.model.ResultItem;
 import com.clarity.one.model.TagItem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
@@ -41,8 +42,8 @@ public class ResultsActivity extends AppCompatActivity {
     private AmazonDynamoDBClient dynamoDBClient;
     private DynamoDBMapper mapper;
     private ListView resultListView;
-    private ListAdapter listAdapter;
-    private List<TagItem> results;
+    private ResultsListAdapter listAdapter;
+    private List<TagItem> results = new ArrayList();
     protected List<ResultItem> searchResults = new ArrayList<>();
     private Button resultsMoreFiltersBtn;
     public static final String influencerId = "com.clarity.one.app.influencerId";
@@ -58,6 +59,9 @@ public class ResultsActivity extends AppCompatActivity {
         resultListView = (ListView) findViewById(R.id.resultList);
 
         resultsMoreFiltersBtn = (Button) findViewById(R.id.resultsMoreFiltersBtn);
+
+        listAdapter = new ResultsListAdapter(getApplicationContext(), results);
+        resultListView.setAdapter(listAdapter);
 
         parseTags();
         initStuff();
@@ -123,16 +127,17 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     private void displayResult(PaginatedQueryList<TagItem> result){
-        listAdapter = new ResultsListAdapter(getApplicationContext(), result);
-        resultListView.setAdapter(listAdapter);
-        /*Iterator k = result.iterator();
+        //listAdapter = new ResultsListAdapter(getApplicationContext(), result);
+        //resultListView.setAdapter(listAdapter);
+        Iterator k = result.iterator();
         TagItem item = null;
         while (k.hasNext()){
             item = (TagItem) k.next();
-            ResultItem resultItem = new ResultItem(item.getTag(), item.getUserId());
-            searchResults.add(resultItem);
+            results.add(item);
+            listAdapter.notifyDataSetChanged();
+            //ResultItem resultItem = new ResultItem(item.getTag(), item.getUserId());
             Log.e("ITEM: ", item.getUserId());
-        }*/
+        }
     }
 
     class runTagsQuery extends AsyncTask<String, Void, PaginatedQueryList<TagItem>>{
@@ -163,42 +168,6 @@ public class ResultsActivity extends AppCompatActivity {
             displayResult(result);
         }
 
-
-    }
-
-    class runInfluencerQuery extends AsyncTask<Void, Void, PaginatedQueryList<InfluencerOne> >{
-
-        ResultItem resultItem;
-
-        public runInfluencerQuery(ResultItem r){
-            this.resultItem = r;
-        }
-
-        @Override
-        protected PaginatedQueryList<InfluencerOne> doInBackground(Void... params){
-            try {
-                InfluencerOne hashKey = new InfluencerOne();
-                hashKey.setUserId(resultItem.getUserId());
-
-                DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
-                        .withHashKeyValues(hashKey);
-
-                PaginatedQueryList<InfluencerOne> result = mapper.query(InfluencerOne.class, queryExpression);
-
-                return result;
-            } catch (Exception e){
-                String er = e.getMessage();
-                if (e != null)
-                    Log.e("InfluencerOne AWS Error", er);
-                else
-                    Log.e("InfluencerOne AWS Error", "No detailed message available");
-            }
-            return null;
-        }
-
-        protected void onPostExecute(PaginatedQueryList<InfluencerOne> result){
-
-        }
 
     }
 

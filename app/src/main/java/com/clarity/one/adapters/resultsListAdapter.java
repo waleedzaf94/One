@@ -21,13 +21,14 @@ import com.pkmmte.view.CircularImageView;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Waleed on 7/12/2015.
  */
 public class ResultsListAdapter extends ArrayAdapter<TagItem> {
 
-    public ResultsListAdapter(Context context, PaginatedQueryList<TagItem> queryList){
+    public ResultsListAdapter(Context context, List<TagItem> queryList){
         super(context, R.layout.list_item_results, queryList);
     }
 

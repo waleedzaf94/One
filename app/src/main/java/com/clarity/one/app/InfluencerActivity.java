@@ -1,8 +1,15 @@
 package com.clarity.one.app;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Locale;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
@@ -35,6 +43,7 @@ import com.clarity.one.fragments.RecentFragment;
 import com.clarity.one.model.Influencer;
 import com.clarity.one.model.InfluencerOne;
 import com.clarity.one.model.ResultItem;
+import com.pkmmte.view.CircularImageView;
 
 public class InfluencerActivity extends AppCompatActivity {
 
@@ -69,17 +78,14 @@ public class InfluencerActivity extends AppCompatActivity {
         Intent i = getIntent();
         userId = i.getStringExtra(ResultsActivity.influencerId);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.influencerViewPager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
         initDB();
+        influencer = new Influencer();
         influencer.setUserId(userId);
         new runInfluencerQuery(influencer).execute();
+
+
+
+
     }
 
     private void initDB(){
@@ -91,6 +97,17 @@ public class InfluencerActivity extends AppCompatActivity {
         dynamoDBClient = new AmazonDynamoDBClient(credentialsProvider);
         dynamoDBClient.setRegion(Region.getRegion(Regions.US_WEST_2));
         mapper = new DynamoDBMapper(dynamoDBClient);
+    }
+
+    private void setInfluencer(Influencer i){
+        this.influencer = i;
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        //mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        //mViewPager = (ViewPager) findViewById(R.id.influencerViewPager);
+        //mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
     class runInfluencerQuery extends AsyncTask<Void, Void, PaginatedQueryList<Influencer> > {
@@ -116,15 +133,68 @@ public class InfluencerActivity extends AppCompatActivity {
             } catch (Exception e){
                 String er = e.getMessage();
                 if (e != null)
-                    Log.e("InfluencerOne AWS Error", er);
+                    Log.e("Influencer AWS Error", er);
                 else
-                    Log.e("InfluencerOne AWS Error", "No detailed message available");
+                    Log.e("Influencer AWS Error", "No detailed message available");
             }
             return null;
         }
 
         protected void onPostExecute(PaginatedQueryList<Influencer> result){
+            if (result.size() > 0) {
+                this.influencer = result.get(0);
+                new ImageDownloader(influencer).execute();
+            }
+        }
 
+    }
+
+    class ImageDownloader extends AsyncTask<Void, Void, Void> {
+        private Influencer influencer;
+        private CircularImageView profilePic;
+        private Drawable drawable;
+        private String url;
+
+        public ImageDownloader(Influencer influencer){
+            this.influencer = influencer;
+            this.profilePic = influencer.getRoundPP();
+            this.drawable = influencer.getProfilePicture();
+            this.url = influencer.getProfilePic();
+        }
+
+        protected Void doInBackground(Void... params){
+            drawable = downloadImage(url);
+            return null;
+        }
+
+        protected void onPostExecute(Void param){
+            profilePic.setImageDrawable(drawable);
+            setInfluencer(influencer);
+        }
+
+        private Drawable downloadImage(String url1){
+            URL url;
+            InputStream in;
+            BufferedInputStream buf;
+
+            try{
+                url = new URL(url1);
+                in = url.openStream();
+
+                buf = new BufferedInputStream(in);
+
+                Bitmap bmap = BitmapFactory.decodeStream(buf);
+                if (in != null){
+                    in.close();
+                }
+                if (buf != null){
+                    buf.close();
+                }
+                return new BitmapDrawable(bmap);
+            } catch (Exception e){
+                Log.v("Error downloading image", e.toString());
+            }
+            return null;
         }
 
     }
@@ -185,7 +255,8 @@ public class InfluencerActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Bundle bundle = new Bundle();
-            bundle.putString(userId, "ActivityUserId");
+            bundle.putString("ActivityUserId", userId);
+            bundle.putSerializable("InfluencerObject", influencer);
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position){
