@@ -74,5 +74,7 @@
     <string name="avg_likes">Avg. Likes</string>
     <string name="engagement">Engagement</string>
     <string name="profile_settings">Settings</string>
+    <string name="sample_text">Sample</string>
+    <string name="sample_num">100</string>
 
 </resources>

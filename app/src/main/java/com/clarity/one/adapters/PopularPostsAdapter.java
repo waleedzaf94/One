@@ -14,30 +14,29 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Waleed on 7/16/2015.
+ * Created by Waleed on 7/24/2015.
  */
-public class TopFollowingAdapter extends RecyclerView.Adapter<TopFollowingAdapter.FollowingViewHolder> {
-//Create adapter. Extend to RecyclerView.Adapter<VH>
-//Create custom ViewHolder class as type for RecylcerView.Adapter
+public class PopularPostsAdapter extends RecyclerView.Adapter<PopularPostsAdapter.PopularViewHolder>{
+
 
     private LayoutInflater inflater;
     List<FollowingInfo> data = Collections.emptyList();
 
-    public TopFollowingAdapter(Context context, List<FollowingInfo> data){
+    public PopularPostsAdapter(Context context, List<FollowingInfo> data){
         this.data = data;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public FollowingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PopularViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.adapter_influencer_profile_following, parent, false);
-        FollowingViewHolder holder = new FollowingViewHolder(view);
+        PopularViewHolder holder = new PopularViewHolder(view);
 
         return null;
     }
 
     @Override
-    public void onBindViewHolder(FollowingViewHolder holder, int position) {
+    public void onBindViewHolder(PopularViewHolder holder, int position) {
         FollowingInfo currentObject = data.get(position);
         holder.profilePic.setImageDrawable(currentObject.getProfilePic());
     }
@@ -47,13 +46,14 @@ public class TopFollowingAdapter extends RecyclerView.Adapter<TopFollowingAdapte
         return 0;
     }
 
-    class FollowingViewHolder extends RecyclerView.ViewHolder{
+
+    class PopularViewHolder extends RecyclerView.ViewHolder{
 
         ImageView profilePic;
 
-        public FollowingViewHolder(View itemView) {
+        public PopularViewHolder(View itemView) {
             super(itemView);
-            profilePic = (ImageView) itemView.findViewById(R.id.followingProfilePic);
+            //profilePic = (ImageView) itemView.findViewById(R.id.followingProfilePic);
         }
     }
 

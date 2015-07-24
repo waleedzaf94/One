@@ -46,7 +46,6 @@ public class ResultsActivity extends AppCompatActivity {
     private List<TagItem> results = new ArrayList();
     protected List<ResultItem> searchResults = new ArrayList<>();
     private Button resultsMoreFiltersBtn;
-    public static final String influencerId = "com.clarity.one.app.influencerId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +83,10 @@ public class ResultsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TagItem item = (TagItem) resultListView.getItemAtPosition(position);
                 String uid = item.getUserId();
+                String username = item.getUsername();
                 Intent i = new Intent(getApplicationContext(), InfluencerActivity.class);
-                i.putExtra(influencerId, uid);
+                i.putExtra("InfluencerUserId", uid);
+                i.putExtra("InfluencerUsername", username);
                 startActivity(i);
             }
         });

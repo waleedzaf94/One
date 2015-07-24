@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
 import com.clarity.one.R;
 import com.clarity.one.model.TagItem;
 import com.pkmmte.view.CircularImageView;
@@ -29,13 +28,13 @@ import java.util.List;
 public class ResultsListAdapter extends ArrayAdapter<TagItem> {
 
     public ResultsListAdapter(Context context, List<TagItem> queryList){
-        super(context, R.layout.list_item_results, queryList);
+        super(context, R.layout.adapter_results_list, queryList);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflator = LayoutInflater.from(getContext());
-        View customView = inflator.inflate(R.layout.list_item_results, parent, false);
+        View customView = inflator.inflate(R.layout.adapter_results_list, parent, false);
         TagItem tagItem = getItem(position);
         TextView username = (TextView) customView.findViewById(R.id.resultListUsername);
         CircularImageView profilePic = (CircularImageView) customView.findViewById(R.id.resultListPic);
@@ -44,12 +43,33 @@ public class ResultsListAdapter extends ArrayAdapter<TagItem> {
         TextView engagement = (TextView) customView.findViewById(R.id.resultListEngagement);
         TextView tags = (TextView) customView.findViewById(R.id.resultListTags);
         username.setText(tagItem.getUsername());
-        followersCount.setText(Integer.toString(tagItem.getFollowersCount()));
-        avgLikes.setText(Float.toString(tagItem.getAverageLikes()));
-        engagement.setText(Float.toString(tagItem.getEngagementRate()));
+        followersCount.setText(formatFollowers(tagItem.getFollowersCount()));
+        avgLikes.setText(String.format("%.2f", tagItem.getAverageLikes()));
+        engagement.setText(String.format("%.2f", tagItem.getEngagementRate()));
         ImageDownloader imageDownloader = new ImageDownloader(profilePic, tagItem.getProfilePic());
         imageDownloader.execute();
         return customView;
+    }
+
+    private String formatFollowers(int followers){
+        String fs = Integer.toString(followers);
+        if (followers > 999999){
+            int len = fs.length();
+            int sixthLast = len-6;
+            char sl = fs.charAt(sixthLast);
+            String start = fs.substring(0, sixthLast);
+            String num = start + "." + sl + "m";
+            return num;
+        }
+        else if (followers > 999){
+            int len = fs.length();
+            int thirdLast = len-3;
+            char tl = fs.charAt(thirdLast);
+            String start = fs.substring(0, thirdLast);
+            String num = start + "." + tl + "k";
+            return num;
+        }
+        return fs;
     }
 
     class ImageDownloader extends AsyncTask<Void, Void, Void> {

@@ -12,7 +12,7 @@
         android:background="@drawable/halfbg"
         android:elevation="10dp">
 
-        <ImageView
+        <com.pkmmte.view.CircularImageView
             android:id="@+id/influencerProfilePic"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -124,6 +124,10 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -148,8 +152,8 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/profilePosts"
-                android:layout_width="match_parent"
+                android:id="@+id/profilePostsLabel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
@@ -160,48 +164,42 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/profileTopTags"
+                android:id="@+id/profilePosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileBio"
+                android:layout_marginLeft="70dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/profilePostsLabel"
+                android:layout_toRightOf="@+id/profilePostsLabel"
+                android:text="PostsPerDay"
+                android:textColor="#8a000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/profileTopTagsLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
-                android:layout_below="@+id/profilePosts"
+                android:layout_below="@+id/profilePostsLabel"
                 android:layout_marginTop="5dp"
                 android:text="@string/top_tags"
                 android:textColor="#8a000000"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/profileTopLocations"
+                android:id="@+id/profileTopLocationsLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/profileBio"
                 android:layout_alignStart="@+id/profileBio"
-                android:layout_below="@+id/profileTopTags"
+                android:layout_below="@+id/profileTopTagsLabel"
                 android:layout_marginTop="5dp"
                 android:text="@string/top_locations"
                 android:textColor="#8a000000"
                 android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/profileTopFollowing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/profileBio"
-                android:layout_alignStart="@+id/profileBio"
-                android:layout_below="@+id/profileTopLocations"
-                android:layout_marginTop="50dp"
-                android:text="@string/top_20_following_caps"
-                android:textColor="#8a000000"
-                android:textSize="16sp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/profileRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_below="@+id/profileTopFollowing"
-                android:layout_marginTop="3dp"
-                android:background="#80000000" />
 
         </RelativeLayout>
 

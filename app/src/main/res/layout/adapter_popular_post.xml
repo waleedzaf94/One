@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fafafa">
+
+    <ImageView
+        android:id="@+id/popularPic"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:background="@color/primary_dark_material_light" />
+
+    <ImageView
+        android:id="@+id/popularLikesIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/popularPic"
+        android:layout_alignLeft="@+id/popularPic"
+        android:layout_alignStart="@+id/popularPic"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:background="@drawable/ic_likes_white" />
+
+    <TextView
+        android:id="@+id/popularLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/popularLikesIcon"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/popularLikesIcon"
+        android:layout_toRightOf="@+id/popularLikesIcon"
+        android:text="@string/sample_num"
+        android:textColor="#deffffff"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/popularLocationIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/popularPic"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/ci_location" />
+
+    <TextView
+        android:id="@+id/popularLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/popularLocationIcon"
+        android:layout_toEndOf="@+id/popularLocationIcon"
+        android:layout_toRightOf="@+id/popularLocationIcon"
+        android:text="@string/sample_text"
+        android:textColor="#8b000000"
+        android:textSize="11.2sp" />
+
+    <TextView
+        android:id="@+id/popularCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/popularLocationIcon"
+        android:layout_alignStart="@id/popularLocationIcon"
+        android:layout_below="@+id/popularLocationIcon"
+        android:layout_marginTop="4dp"
+        android:text="@string/sample_text"
+        android:textColor="#000000"
+        android:textSize="13.8sp" />
+
+    <TextView
+        android:id="@+id/popularComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/popularLocationIcon"
+        android:layout_alignStart="@id/popularLocationIcon"
+        android:layout_below="@+id/popularCaption"
+        android:layout_marginTop="4dp"
+        android:text="@string/sample_text"
+        android:textColor="#8b000000"
+        android:textSize="13.8sp" />
+
+</RelativeLayout>

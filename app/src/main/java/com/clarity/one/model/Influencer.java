@@ -22,6 +22,7 @@ import java.util.Set;
 @DynamoDBTable(tableName="Influencers")
 public class Influencer implements Serializable{
 
+    private static final long serialVersionUID = 925333914648562916L;
     private String userId;
     private String username;
     private String website;
@@ -42,6 +43,8 @@ public class Influencer implements Serializable{
     private Map<String, AttributeValue> topFollowing;
     private Map<String, AttributeValue> topTags;
     private Set<String> topMedia;
+    private Set<String> topTagList;
+    private Set<String> topCountryList;
     private Drawable profilePicture;
     private CircularImageView roundPP;
 
@@ -229,6 +232,24 @@ public class Influencer implements Serializable{
         this.topMedia = m;
     }
 
+    @DynamoDBAttribute(attributeName = "TopTagList")
+    public Set<String> getTopTagList() {
+        return topTagList;
+    }
+
+    public void setTopTagList(Set<String> topTagList) {
+        this.topTagList = topTagList;
+    }
+
+    @DynamoDBAttribute(attributeName = "TopCountryList")
+    public Set<String> getTopCountryList() {
+        return topCountryList;
+    }
+
+    public void setTopCountryList(Set<String> topCountryList) {
+        this.topCountryList = topCountryList;
+    }
+
     public Drawable getProfilePicture(){
         return profilePicture;
     }
@@ -243,93 +264,6 @@ public class Influencer implements Serializable{
 
     public void setRoundPP(CircularImageView c){
         this.roundPP = c;
-    }
-
-    public class City {
-        CityMap m;
-
-        public CityMap getM() {
-            return m;
-        }
-
-        public void setM(CityMap m) {
-            this.m = m;
-        }
-    }
-
-    public class CityMap {
-        List<MS> cityList;
-
-        public List<MS> getCityList() {
-            return cityList;
-        }
-
-        public void setCityList(List<MS> cityList) {
-            this.cityList = cityList;
-        }
-    }
-
-    public class MS {
-        String cityName;
-        SNValue attributeValue;
-
-        public String getCityName() {
-            return cityName;
-        }
-
-        public void setCityName(String cityName) {
-            this.cityName = cityName;
-        }
-
-        public void setAttributeValue(SNValue attributeValue) {
-            this.attributeValue = attributeValue;
-        }
-
-        public SNValue getAttributeValue() {
-            return attributeValue;
-        }
-    }
-
-    public class SNValue {
-        int N;
-
-        public int getN() {
-            return N;
-        }
-
-        public void setN(int n) {
-            this.N = n;
-        }
-    }
-
-    public class AVMarshaller extends JsonMarshaller<City>{
-
-        @Override
-        public String marshall(City obj) {
-            return super.marshall(obj);
-        }
-
-        @Override
-        public City unmarshall(Class<City> clazz, String json) {
-            return super.unmarshall(clazz, json);
-        }
-
-    }
-
-    public class MarshallerTwo extends JsonMarshaller<Map<String, String>>{
-
-    }
-
-    public class MarshallerThree extends JsonMarshaller<String> {
-
-        public String marshall(String obj) {
-            return super.marshall(obj);
-        }
-
-
-        public String unmarshall(Class<String> clazz, String json) {
-            return super.unmarshall(clazz, json);
-        }
     }
 
 }

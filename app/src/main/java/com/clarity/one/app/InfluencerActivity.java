@@ -47,7 +47,7 @@ import com.pkmmte.view.CircularImageView;
 
 public class InfluencerActivity extends AppCompatActivity {
 
-    private String userId;
+    private String userId, username;
     private Influencer influencer;
 
     private AmazonDynamoDBClient dynamoDBClient;
@@ -76,7 +76,8 @@ public class InfluencerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_influencer);
 
         Intent i = getIntent();
-        userId = i.getStringExtra(ResultsActivity.influencerId);
+        userId = i.getStringExtra("InfluencerUserId");
+        username = i.getStringExtra("InfluencerUsername");
 
         initDB();
         influencer = new Influencer();
@@ -103,11 +104,11 @@ public class InfluencerActivity extends AppCompatActivity {
         this.influencer = i;
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        //mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        //mViewPager = (ViewPager) findViewById(R.id.influencerViewPager);
-        //mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager = (ViewPager) findViewById(R.id.influencerViewPager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
     class runInfluencerQuery extends AsyncTask<Void, Void, PaginatedQueryList<Influencer> > {
@@ -143,58 +144,9 @@ public class InfluencerActivity extends AppCompatActivity {
         protected void onPostExecute(PaginatedQueryList<Influencer> result){
             if (result.size() > 0) {
                 this.influencer = result.get(0);
-                new ImageDownloader(influencer).execute();
+                setInfluencer(influencer);
+                //new ImageDownloader(influencer).execute();
             }
-        }
-
-    }
-
-    class ImageDownloader extends AsyncTask<Void, Void, Void> {
-        private Influencer influencer;
-        private CircularImageView profilePic;
-        private Drawable drawable;
-        private String url;
-
-        public ImageDownloader(Influencer influencer){
-            this.influencer = influencer;
-            this.profilePic = influencer.getRoundPP();
-            this.drawable = influencer.getProfilePicture();
-            this.url = influencer.getProfilePic();
-        }
-
-        protected Void doInBackground(Void... params){
-            drawable = downloadImage(url);
-            return null;
-        }
-
-        protected void onPostExecute(Void param){
-            profilePic.setImageDrawable(drawable);
-            setInfluencer(influencer);
-        }
-
-        private Drawable downloadImage(String url1){
-            URL url;
-            InputStream in;
-            BufferedInputStream buf;
-
-            try{
-                url = new URL(url1);
-                in = url.openStream();
-
-                buf = new BufferedInputStream(in);
-
-                Bitmap bmap = BitmapFactory.decodeStream(buf);
-                if (in != null){
-                    in.close();
-                }
-                if (buf != null){
-                    buf.close();
-                }
-                return new BitmapDrawable(bmap);
-            } catch (Exception e){
-                Log.v("Error downloading image", e.toString());
-            }
-            return null;
         }
 
     }
@@ -216,7 +168,7 @@ public class InfluencerActivity extends AppCompatActivity {
         ImageButton profileBack = (ImageButton) mCustomView.findViewById(R.id.profileBack);
         ImageButton profileMore = (ImageButton) mCustomView.findViewById(R.id.profileMore);
 
-        profileUsername.setText(userId);
+        profileUsername.setText(username);
         profileBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
