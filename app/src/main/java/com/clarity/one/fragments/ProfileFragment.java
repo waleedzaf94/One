@@ -43,12 +43,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         View rootView = inflater.inflate(R.layout.fragment_influencer_profile, container, false);
@@ -98,7 +96,7 @@ public class ProfileFragment extends Fragment {
         return rootView;
     }
 
-    private String formatFollowers(int followers){
+    public static String formatFollowers(int followers){
         String fs = Integer.toString(followers);
         if (followers > 999999){
             int len = fs.length();
